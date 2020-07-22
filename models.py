@@ -1,13 +1,14 @@
+from django.conf import settings
 from django.db import models
 
+class Post(models.Model):
+    author_name - models.CharField(max_length=20)
+    title = models.CharField(max_length=100)
+    content = models.Textfield()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-class Item(models.Model):
-    name = models.CharField(max_length=100)
-    desc = models.TextField(black=True)
-    price = models.PositiveIntegerField()
-    is_publish = models.BooleanField(default = False)
-    created_at = models.DassteTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now = True)
-
-    def __str__(self):
-        return f'<{self.pk}>{self.name}'
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    message = models.TextField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
