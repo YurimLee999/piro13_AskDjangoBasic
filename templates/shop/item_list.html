@@ -1,0 +1,19 @@
+{% extends "shop/layout.html" %}
+{% block content %}
+
+<form action="" method="GET">
+    <input type="text" name="q" value="{{ q }}"/>
+    <input type="submit" value="search"/>
+</form>
+<ul>
+    {% for item in them_list %}
+    <li>
+        <a hred="/shop/{{ item.pk }}/">
+            {{ item.name }}
+        </a>
+        {{ item.price }}
+        {{ item.desc }}
+    </li>
+</ul>
+
+{% endblock %}
